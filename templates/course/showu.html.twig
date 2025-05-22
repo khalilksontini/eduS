@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du cours{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .course-detail-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .course-title {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .course-description {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .course-meta {
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-ia-tutor {
+        background-color: #3498db;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 1rem;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-ia-tutor:hover {
+        background-color: #2980b9;
+    }
+    
+    .btn-back {
+        background-color: #95a5a6;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-back:hover {
+        background-color: #7f8c8d;
+    }
+    
+    .strong-label {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="course-detail-container">
+    <h2 class="course-title">{{ course.title }}</h2>
+    
+    <p class="strong-label">Description :</p>
+    <div class="course-description">
+        {{ course.description }}
+    </div>
+    
+    <p class="course-meta">
+        <span class="strong-label">Créé le :</span> {{ course.createdAt|date('d/m/Y H:i') }}
+    </p>
+
+    <a href="{{ path('user_ask_question', {'id': course.id}) }}" class="btn-ia-tutor">Tuteur IA</a>
+    <a href="{{ path('user_courses') }}" class="btn-back">← Retour à la liste</a>
+</div>
+{% endblock %}

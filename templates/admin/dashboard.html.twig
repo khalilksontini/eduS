@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Admin{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Tableau de bord Administrateur</h2>
+        <a href="{{ path('app_logout') }}" class="btn btn-outline-danger">Déconnexion</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Utilisateurs</h5>
+                    <p class="card-text">Gérer les utilisateurs inscrits.</p>
+                    <a href="{{ path('admin_users') }}" class="btn btn-light">Voir plus</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Cours</h5>
+                    <p class="card-text">Ajouter ou modifier des cours.</p>
+                    <a href="{{ path('admin_courses') }}" class="btn btn-light">Voir plus</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Statistiques</h5>
+                    <p class="card-text">Consulter les statistiques de la plateforme.</p>
+                    <a href="{{ path('admin_statistics') }}" class="btn btn-light">Voir plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

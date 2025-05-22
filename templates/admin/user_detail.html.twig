@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails Utilisateur{% endblock %}
+
+{% block body %}
+<div class="user-details-container">
+    <h1 class="page-title">Détails de l'utilisateur</h1>
+
+    <div class="details-card">
+        <div class="details-content">
+            <div class="detail-item">
+                <span class="detail-label">ID :</span>
+                <span class="detail-value">{{ user.id }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email :</span>
+                <span class="detail-value">{{ user.email }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Nom :</span>
+                <span class="detail-value">{{ user.name }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Rôles :</span>
+                <div class="roles-list">
+                    {% for role in user.roles %}
+                    <div class="role-badge">{{ role }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <a href="{{ path('admin_users') }}" class="back-link">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.user-details-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.details-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eaeff5;
+    box-shadow: 0 10px 30px rgba(50,50,93,.05), 0 5px 15px rgba(0,0,0,.05);
+    padding: 32px;
+}
+
+.details-content {
+    display: grid;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    flex: 0 0 120px;
+    color: #64748b;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.detail-value {
+    flex: 1;
+    color: #334155;
+    font-size: 15px;
+}
+
+.roles-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.role-badge {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin-top: 24px;
+}
+
+.back-link:hover {
+    background: #f8fafd;
+    color: #2563eb;
+}
+
+.back-link .icon {
+    margin-right: 10px;
+    fill: currentColor;
+}
+
+@media (max-width: 768px) {
+    .details-card {
+        padding: 24px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .detail-label {
+        flex: none;
+        font-size: 13px;
+    }
+    
+    .detail-value {
+        font-size: 14px;
+    }
+}
+</style>
+{% endblock %}

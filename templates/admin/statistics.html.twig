@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques des Utilisateurs{% endblock %}
+
+{% block body %}
+<div class="stats-container">
+    <h1 class="page-title">Statistiques des Utilisateurs</h1>
+
+    <div class="table-wrapper">
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th class="column-user">Utilisateur</th>
+                    <th class="column-email">Email</th>
+                    <th class="column-courses">Nombre de cours</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for stat in stats %}
+                <tr>
+                    <td>{{ stat.user.name }}</td>
+                    <td>{{ stat.user.email }}</td>
+                    <td class="course-count">{{ stat.courseCount }}</td>
+                </tr>
+            {% else %}
+                <tr class="no-results">
+                    <td colspan="3">
+                        <div class="empty-state">
+                            <svg class="empty-icon" viewBox="0 0 24 24" width="48" height="48">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 11h10v2H7zm0-4h10v2H7zm0 8h7v2H7z"/>
+                            </svg>
+                            Aucune donnée disponible
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.stats-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.table-wrapper {
+    border: 1px solid #eaeff5;
+    border-radius: 12px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(50,50,93,.05), 0 5px 15px rgba(0,0,0,.05);
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.stats-table th {
+    background-color: #f8fafd;
+    color: #3b82f6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 16px 24px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.stats-table td {
+    padding: 18px 24px;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.stats-table tr:last-child td {
+    border-bottom: none;
+}
+
+.stats-table tr:hover td {
+    background-color: #f8fafd;
+}
+
+.course-count {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.no-results td {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.empty-icon {
+    fill: #cbd5e1;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .stats-table th,
+    .stats-table td {
+        padding: 12px 15px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .stats-table {
+        font-size: 13px;
+    }
+    
+    .course-count {
+        font-size: 14px;
+    }
+}
+</style>
+{% endblock %}

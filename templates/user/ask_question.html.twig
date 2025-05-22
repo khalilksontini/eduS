@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Poser une question{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .question-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .question-title {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 0.85rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+    
+    .form-control:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+    
+    .btn-submit {
+        background-color: #3498db;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-submit:hover {
+        background-color: #2980b9;
+    }
+    
+    .answer-container {
+        background-color: #e8f4fc;
+        color: #2c3e50;
+        padding: 1.25rem;
+        border-radius: 6px;
+        margin-top: 2rem;
+        border-left: 4px solid #3498db;
+    }
+    
+    .answer-title {
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: #2c3e50;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="question-container">
+    <h2 class="question-title">Cours : {{ course.title }}</h2>
+    
+    <form method="post">
+        <div class="form-group">
+            <label for="question" class="form-label">Posez votre question :</label>
+            <textarea name="question" id="question" rows="3" class="form-control" required>{{ question }}</textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">Envoyer</button>
+    </form>
+
+    {% if answer %}
+        <div class="answer-container">
+            <div class="answer-title">Réponse IA :</div>
+            {{ answer|nl2br }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur EduPlatform{% endblock %}
+
+{% block body %}
+<style>
+    .hero {
+        background: linear-gradient(135deg, #1a73e8, #4285f4);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+    }
+
+    .hero .btn {
+        margin: 10px;
+        padding: 15px 30px;
+        font-size: 1em;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn-register {
+        background-color: #ffffff;
+        color: #1a73e8;
+    }
+
+    .btn-login {
+        background-color: transparent;
+        border: 2px solid #ffffff;
+        color: white;
+    }
+
+    .btn-register:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn-login:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 600px) {
+        .hero h1 {
+            font-size: 2em;
+        }
+    }
+</style>
+
+<div class="hero">
+    <h1>Apprenez, progressez, réussissez !</h1>
+    <p>Bienvenue sur votre plateforme éducative. Rejoignez-nous pour découvrir des contenus de qualité adaptés à tous les niveaux.</p>
+
+    <a href="{{ path('app_register') }}" class="btn btn-register">S'inscrire</a>
+    <a href="{{ path('app_login') }}" class="btn btn-login">Se connecter</a>
+</div>
+{% endblock %}

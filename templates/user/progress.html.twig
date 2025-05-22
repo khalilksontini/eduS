@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma Progression{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Progression</h2>
+    <p>Suivez votre progression ici. (Statistiques à venir)</p>
+     <h1>Mes Cours</h1>
+
+    <div class="row">
+        {% for userCourse in userCourses %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ userCourse.course.title }}</h5>
+                        <p class="card-text">Démarré le : {{ userCourse.startedAt|date('d-m-Y') }}</p>
+                        <a href="{{ path('user_course_plan', {id: userCourse.course.id}) }}" class="btn btn-sm btn-primary">
+    Voir les détails
+</a>
+                        <!-- Optionnellement, tu peux afficher l'avancement ici -->
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

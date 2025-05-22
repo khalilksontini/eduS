@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plan d'Étude - {{ course.title }}{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Plan d’étude généré pour : {{ course.title }}</h2>
+    <pre style="white-space: pre-wrap;">{{ plan }}</pre>
+
+    <a href="{{ path('user_ask_question', {id: course.id}) }}" class="btn btn-outline-secondary mt-3">
+        Poser une question sur ce cours
+    </a>
+</div>
+{% endblock %}

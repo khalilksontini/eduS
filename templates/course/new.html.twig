@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un cours{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .course-form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .course-form-title {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+    }
+    
+    .btn-submit {
+        background-color: #27ae60;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-submit:hover {
+        background-color: #2ecc71;
+    }
+    
+    .btn-back {
+        background-color: #95a5a6;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 1.5rem;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-back:hover {
+        background-color: #7f8c8d;
+    }
+    
+    .form-errors {
+        color: #e74c3c;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="course-form-container">
+    <h2 class="course-form-title">Ajouter un nouveau cours</h2>
+    
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+        
+        <button type="submit" class="btn-submit">{{ button_label|default('Créer') }}</button>
+    {{ form_end(form) }}
+    
+    <a href="{{ path('admin_courses') }}" class="btn-back">← Retour à la liste</a>
+</div>
+{% endblock %}

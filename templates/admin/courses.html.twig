@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Cours{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .course-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .course-header {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .btn-add-course {
+        background-color: #27ae60;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-add-course:hover {
+        background-color: #2ecc71;
+    }
+    
+    .course-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .course-table th {
+        background-color: #2c3e50;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+    
+    .course-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ecf0f1;
+    }
+    
+    .course-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .course-table tr:hover {
+        background-color: #e8f4fc;
+    }
+    
+    .btn-action {
+        padding: 0.3rem 0.6rem;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+        display: inline-block;
+    }
+    
+    .btn-view {
+        background-color: #3498db;
+        color: white;
+    }
+    
+    .btn-edit {
+        background-color: #f39c12;
+        color: white;
+    }
+    
+    .btn-delete {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-view:hover {
+        background-color: #2980b9;
+    }
+    
+    .btn-edit:hover {
+        background-color: #e67e22;
+    }
+    
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+    
+    .no-courses {
+        text-align: center;
+        color: #7f8c8d;
+        padding: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="course-container">
+    <h2 class="course-header">Gestion des cours</h2>
+
+    <a href="{{ path('app_course_new') }}" class="btn-add-course"> Ajouter un nouveau cours</a>
+
+    <table class="course-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.id }}</td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.description|length > 50 ? course.description|slice(0, 50) ~ '...' : course.description }}</td>
+                    <td>
+                        <a href="{{ path('app_course_show', {id: course.id}) }}" class="btn-action btn-view">Voir</a>
+                        <a href="{{ path('app_course_edit', {id: course.id}) }}" class="btn-action btn-edit">Modifier</a>
+                        <form method="post" action="{{ path('app_course_delete', {id: course.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce cours?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ course.id) }}">
+                            <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4" class="no-courses">Aucun cours trouvé.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
